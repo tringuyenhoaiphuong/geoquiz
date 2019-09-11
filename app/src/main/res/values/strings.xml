@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">GeoQuiz</string>
+    <string name="cauhoi">Thái Bình Dương lớn hơn Đại Tây Dương?</string>
+    <string name="dung">True</string>
+    <string name="sai">False</string>
+    <string name="traloidung">Bạn trả lời đúng</string>
+    <string name="traloisai">Bạn trả lời sai</string>
+</resources>
