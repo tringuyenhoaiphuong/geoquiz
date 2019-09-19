@@ -29,12 +29,35 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.traloidung)
     void onTraLoiDungClick(View v) {
-        Toast.makeText(getApplicationContext(), R.string.traloidung, Toast.LENGTH_SHORT).show();
+        answer(true);
     }
 
     @OnClick(R.id.traloisai)
     void onTraLoiSaiClick(View v) {
-        Toast.makeText(getApplicationContext(), R.string.traloisai, Toast.LENGTH_SHORT).show();
+        answer(false);
+    }
+
+    private void answer(boolean b) {
+        Question currentQuestion = mQuestionList.get(mCurrentQuestionIndex);
+        if(currentQuestion.IsTrue() == b) {
+            Toast.makeText(getApplicationContext(), R.string.traloidung, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), R.string.traloisai, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @OnClick(R.id.btn_previous)
+    void OnBtnPreviousClick(View v){
+        if(mCurrentQuestionIndex == 0) return;
+        mCurrentQuestionIndex--;
+        showQuestion();
+    }
+
+    @OnClick(R.id.btn_next)
+    void OnBtnNextClick(View v){
+        if(mCurrentQuestionIndex == mQuestionList.size() - 1) return;
+        mCurrentQuestionIndex++;
+        showQuestion();
     }
 
     @Override
