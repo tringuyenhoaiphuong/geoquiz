@@ -5,32 +5,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.lemycanh.geoquiz.MainActivity">
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
-        <TextView
-            android:id="@+id/tv_question"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="@string/cauhoi" />
+        android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
             android:gravity="center">
-            <Button
-                android:id="@+id/traloidung"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="@string/dung"/>
-            <Button
-                android:id="@+id/traloisai"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="@string/sai"/>
+            <TextView
+                android:id="@+id/tv_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="@string/cauhoi" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <Button
+                    android:id="@+id/traloidung"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="@string/dung"/>
+                <Button
+                    android:id="@+id/traloisai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="@string/sai"/>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+            <Button
+                android:id="@+id/btn_previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/previous"/>
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/next"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
 
 </android.support.constraint.ConstraintLayout>
