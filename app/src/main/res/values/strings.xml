@@ -5,4 +5,7 @@
     <string name="sai">False</string>
     <string name="traloidung">Bạn trả lời đúng</string>
     <string name="traloisai">Bạn trả lời sai</string>
+    <string name="questionA">Châu Á Thái Bình Dương lớn hơn Đại Tây Dương</string>
+    <string name="questionB">Diện tích Việt Nam lớn hơn Diện tích Trung Quốc</string>
+    <string name="questionC">Huế giáp ranh Đà Nẵng</string>
 </resources>
