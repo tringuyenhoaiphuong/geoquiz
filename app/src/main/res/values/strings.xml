@@ -10,4 +10,8 @@
     <string name="questionC">Huế giáp ranh Đà Nẵng</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="cheat">Cheat</string>
+    <string name="cheatwarning">Nếu sử dụng tính năng này bạn sẽ không được tính điểm</string>
+    <string name="show_answer">Show answer!</string>
+    <string name="answer_is">Câu trả lời là:</string>
 </resources>

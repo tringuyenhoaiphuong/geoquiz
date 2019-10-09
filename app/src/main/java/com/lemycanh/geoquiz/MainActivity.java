@@ -1,5 +1,6 @@
 package com.lemycanh.geoquiz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int CHEAT_INTENT_CODE = 1;
     final String TAG = "GeoQuiz";
 
     ArrayList<Question> mQuestionList;
@@ -38,6 +40,26 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.traloisai)
     void onTraLoiSaiClick(View v) {
         answer(false);
+    }
+
+    @OnClick(R.id.btn_cheat)
+    void onBtnCheatClick(View v) {
+        Question currentQuestion = mQuestionList.get(mCurrentQuestionIndex);
+        Intent startCheatIntent = CheatActivity.getIntent(this, currentQuestion.getContent());
+        startActivityForResult(startCheatIntent, CHEAT_INTENT_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == CHEAT_INTENT_CODE) {
+            if(resultCode == RESULT_OK) {
+                Question currentQuestion = mQuestionList.get(mCurrentQuestionIndex);
+                Toast.makeText(getApplicationContext(), getString(R.string.answer_is) + currentQuestion.IsTrue(), Toast.LENGTH_SHORT).show();
+            }
+        }
+
     }
 
     private void answer(boolean b) {
