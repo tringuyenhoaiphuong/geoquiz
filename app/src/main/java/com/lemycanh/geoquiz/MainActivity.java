@@ -8,7 +8,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.greenrobot.greendao.database.Database;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -20,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int CHEAT_INTENT_CODE = 1;
     final String TAG = "GeoQuiz";
 
-    ArrayList<Question> mQuestionList;
+    List<Question> mQuestionList;
     int mCurrentQuestionIndex;
 
     @BindView(R.id.tv_question)
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         answer(false);
     }
 
+    private DaoSession daoSession;
+
     @OnClick(R.id.btn_cheat)
     void onBtnCheatClick(View v) {
         Question currentQuestion = mQuestionList.get(mCurrentQuestionIndex);
@@ -56,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == CHEAT_INTENT_CODE) {
             if(resultCode == RESULT_OK) {
                 Question currentQuestion = mQuestionList.get(mCurrentQuestionIndex);
-                Toast.makeText(getApplicationContext(), getString(R.string.answer_is) + currentQuestion.IsTrue(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.answer_is) + (currentQuestion.getAnswer() == 1), Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -64,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void answer(boolean b) {
         Question currentQuestion = mQuestionList.get(mCurrentQuestionIndex);
-        if(currentQuestion.IsTrue() == b) {
+        if(currentQuestion.getAnswer() == (b ? 1 : 0)) {
             Toast.makeText(getApplicationContext(), R.string.traloidung, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), R.string.traloisai, Toast.LENGTH_SHORT).show();
@@ -92,8 +97,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this,"users-db"); //The users-db here is the name of our database.
+        Database db = helper.getWritableDb();
+        daoSession = new DaoMaster(db).newSession();
+
         loadQuestion();
         showQuestion();
+    }
+
+    public DaoSession getDaoSession() {
+        return daoSession;
     }
 
     @Override
@@ -142,15 +155,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showQuestion() {
+        if(mQuestionList.size() == 0) return;
         Question currentQuestion = mQuestionList.get(mCurrentQuestionIndex);
         mTvQuestion.setText(currentQuestion.getContent());
     }
 
     private void loadQuestion() {
-        mQuestionList = new ArrayList<>();
-        mQuestionList.add(new Question(getString(R.string.questionA), true));
-        mQuestionList.add(new Question(getString(R.string.questionB), false));
-        mQuestionList.add(new Question(getString(R.string.questionC), true));
+
+        QuestionDao questionDao = getDaoSession().getQuestionDao();
+        mQuestionList = questionDao.loadAll();
         mCurrentQuestionIndex = 0;
     }
 }

@@ -1,0 +1,10 @@
+apply plugin: 'application'
+mainClassName = "com.mobot.greendaogenerator.GreenDaoGenerator"
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'org.greenrobot:greendao-generator:3.2.0'
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
