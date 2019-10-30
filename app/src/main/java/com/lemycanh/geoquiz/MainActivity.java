@@ -166,4 +166,10 @@ public class MainActivity extends AppCompatActivity {
         mQuestionList = questionDao.loadAll();
         mCurrentQuestionIndex = 0;
     }
+
+    @OnClick(R.id.btn_questionlist)
+    void OnBtnQuestionListClick(View v) {
+        Intent startQuestionListIntent = QuestionListActivity.createIntent(this);
+        startActivity(startQuestionListIntent);
+    }
 }

@@ -14,4 +14,5 @@
     <string name="cheatwarning">Nếu sử dụng tính năng này bạn sẽ không được tính điểm</string>
     <string name="show_answer">Show answer!</string>
     <string name="answer_is">Câu trả lời là:</string>
+    <string name="question_list">Question List</string>
 </resources>

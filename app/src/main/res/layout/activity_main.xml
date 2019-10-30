@@ -10,7 +10,14 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/btn_cheat"
+            android:id="@+id/btn_questionlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/question_list"
+            android:layout_toLeftOf="@+id/btn_cheat"/>
+
+        <Button
+            android:id="@id/btn_cheat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cheat"
